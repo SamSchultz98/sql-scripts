@@ -20,7 +20,7 @@ from Vendors
     select Distinct VendorName              --working example
 from Vendors
     Where exists (
-        Select VendorName
+        Select VendorName           --Select * gives you the same answer
         From Invoices
         where vendors.vendorid = invoices.VendorID
     )

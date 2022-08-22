@@ -1,4 +1,4 @@
-/* select *
+/*    select *
     into VendorsCopy 
     From Vendors;
 

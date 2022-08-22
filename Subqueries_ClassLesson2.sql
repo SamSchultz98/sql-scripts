@@ -6,3 +6,5 @@ select INvoiceNumber, INvoiceDate, InvoiceTotal
         where VendorState = 'CA'            --Brings up any state that has CA listed as state
     )
     Order By InvoiceTotal desc;
+
+    
