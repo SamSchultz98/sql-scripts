@@ -2,15 +2,15 @@
 USE Master;                                 //Changes our connection to the master conection
 To create the Database:                     //Make sure Connected to master server first
 create database Bootcamp;
------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------
 If you wanted to delete:                    //Make sure Connected To the Master server first
 
-Drop Database Bootcamp;
+Drop Database Bootcamp;                     //How to delete the Database
 Or
 Drop Database If Exists Bootcamp;           //Stating, If this database exists, then drop the database 
 */
 
-use master;
+use master;                                 --Have to use the master server to create new databases
 
 drop database if exists Bootcamp;
 
@@ -24,21 +24,21 @@ create table Students (
     FirstName varchar(30) not null,
     LastName Varchar(60) not null,
     City Varchar(60) not null,
-    Statecode char(2) not null,
-    Phone varchar(60) not null,
+    Statecode char(2) not null default 'OH',
+    Phone varchar(60) not null Unique,
     Email varchar(100) null,
     DateOfBirth Date not null
 );
 Create Table GraduationRequirements (
     Id int not null primary key identity(1, 2),                                                 --You only change the second digit in the Identity Function
-    StudentID int not null FOREIGN key References Students(StudentId),                          --Foreign key must match primary key data type and info, keep same name. Is allowed to be null. In this case it would not be null becayse that data will be linked with a student. Must refrence the primary key
+    StudentID int not null FOREIGN key References Students(StudentId),                           --Foreign key must match primary key data type and info, keep same name. Is allowed to be null. In this case it would not be null becayse that data will be linked with a student. Must refrence the primary key                         
     Topic varchar(60) not null,
-    Score Int null,
+    Score Int null check (Score >=0 and score<= 120) ,                                  --This line has an example of a constraint. This one is preventing the score to be below 0 or above 120. Can see in constraints folder on database
     DateTaken date null
 );
 
 Insert Students
- (FirstName, LastName, City, Statecode, Phone, Email, DateOfBirth) VALUES                       --Values 
+ (FirstName, LastName, City, Statecode, Phone, Email, DateOfBirth) VALUES                       --Values have to match the exact lineup of data as put into the set command 
 ('Sam','Schultz','Fort Thomas','KY','513-418-1632','Sam.schultz@outlook.com','08-15-1998'),
 ('Jack','Cunningham','Cincinnati','OH','513-902-3142','jack.cunning@gmail.com','03-19-1996'),
 ('Erik','Red','Dayton','OH','937-209-2413','Erik.Red10@aol.com','02-01-1992'),
@@ -50,61 +50,74 @@ Insert Students
 
 Insert GraduationRequirements
 (StudentId,Topic)   VALUES
-(1, 'Git/Github'),
-(1,'SQL'),
-(1,'C#'),
-(1,'Java Script'),
-(1,'Angular'),
-(1,'CapStone'),
-(2, 'Git/Github'),
-(2,'SQL'),
-(2,'C#'),
-(2,'Java Script'),
-(2,'Angular'),
-(2,'CapStone'),
-(3, 'Git/Github'),
-(3,'SQL'),
-(3,'C#'),
-(3,'Java Script'),
-(3,'Angular'),
-(3,'CapStone'),
-(4, 'Git/Github'),
-(4,'SQL'),
-(4,'C#'),
-(4,'Java Script'),
-(4,'Angular'),
-(4,'CapStone'),
-(5, 'Git/Github'),
-(5,'SQL'),
-(5,'C#'),
-(5,'Java Script'),
-(5,'Angular'),
-(5,'CapStone'),
-(6, 'Git/Github'),
-(6,'SQL'),
-(6,'C#'),
-(6,'Java Script'),
-(6,'Angular'),
-(6,'CapStone'),
-(7, 'Git/Github'),
-(7,'SQL'),
-(7,'C#'),
-(7,'Java Script'),
-(7,'Angular'),
-(7,'CapStone'),
-(8, 'Git/Github'),
-(8,'SQL'),
-(8,'C#'),
-(8,'Java Script'),
-(8,'Angular'),
-(8,'CapStone')
+((Select StudentId from Students where Firstname = 'Sam'), 'Git/Github'),            --Uses the select in order to make sure the correct student is selected, even if their id changes 
+((Select StudentId from Students where Firstname = 'Sam'),'SQL'),
+((Select StudentId from Students where Firstname = 'Sam'),'C#'),
+((Select StudentId from Students where Firstname = 'Sam'),'Java Script'),
+((Select StudentId from Students where Firstname = 'Sam'),'Angular'),
+((Select StudentId from Students where Firstname = 'Sam'),'CapStone'),
+((Select StudentId from Students where Firstname = 'Jack'), 'Git/Github'),
+((Select StudentId from Students where Firstname = 'Jack'),'SQL'),
+((Select StudentId from Students where Firstname = 'Jack'),'C#'),
+((Select StudentId from Students where Firstname = 'Jack'),'Java Script'),
+((Select StudentId from Students where Firstname = 'Jack'),'Angular'),
+((Select StudentId from Students where Firstname = 'Jack'),'CapStone'),
+((Select StudentId from Students where Firstname = 'Erik'), 'Git/Github'),
+((Select StudentId from Students where Firstname = 'Erik'),'SQL'),
+((Select StudentId from Students where Firstname = 'Erik'),'C#'),
+((Select StudentId from Students where Firstname = 'Erik'),'Java Script'),
+((Select StudentId from Students where Firstname = 'Erik'),'Angular'),
+((Select StudentId from Students where Firstname = 'Erik'),'CapStone'),
+((Select StudentId from Students where Firstname = 'Caleb'), 'Git/Github'),
+((Select StudentId from Students where Firstname = 'Caleb'),'SQL'),
+((Select StudentId from Students where Firstname = 'Caleb'),'C#'),
+((Select StudentId from Students where Firstname = 'Caleb'),'Java Script'),
+((Select StudentId from Students where Firstname = 'Caleb'),'Angular'),
+((Select StudentId from Students where Firstname = 'Caleb'),'CapStone'),
+((Select StudentId from Students where Firstname = 'James'), 'Git/Github'),
+((Select StudentId from Students where Firstname = 'James'),'SQL'),
+((Select StudentId from Students where Firstname = 'James'),'C#'),
+((Select StudentId from Students where Firstname = 'James'),'Java Script'),
+((Select StudentId from Students where Firstname = 'James'),'Angular'),
+((Select StudentId from Students where Firstname = 'James'),'CapStone'),
+((Select StudentId from Students where Firstname = 'Ian'), 'Git/Github'),
+((Select StudentId from Students where Firstname = 'Ian'),'SQL'),
+((Select StudentId from Students where Firstname = 'Ian'),'C#'),
+((Select StudentId from Students where Firstname = 'Ian'),'Java Script'),
+((Select StudentId from Students where Firstname = 'Ian'),'Angular'),
+((Select StudentId from Students where Firstname = 'Ian'),'CapStone'),
+((Select StudentId from Students where Firstname = 'Billy'), 'Git/Github'),
+((Select StudentId from Students where Firstname = 'Billy'),'SQL'),
+((Select StudentId from Students where Firstname = 'Billy'),'C#'),
+((Select StudentId from Students where Firstname = 'Billy'),'Java Script'),
+((Select StudentId from Students where Firstname = 'Billy'),'Angular'),
+((Select StudentId from Students where Firstname = 'Billy'),'CapStone'),
+((Select StudentId from Students where Firstname = 'James'), 'Git/Github'),
+((Select StudentId from Students where Firstname = 'James'),'SQL'),
+((Select StudentId from Students where Firstname = 'James'),'C#'),
+((Select StudentId from Students where Firstname = 'James'),'Java Script'),
+((Select StudentId from Students where Firstname = 'James'),'Angular'),
+((Select StudentId from Students where Firstname = 'James'),'CapStone')
 ;
-
 /*
+Originally we used the user ID which was numerical with 1-8
+Ex: Insert GraduationRequirements
+(StudentId,Topic)   VALUES
+(1,Git/GitHub)
+(1,Sql)
+(1,C#)
+(1,Java Script)
+
+We swapped it for the Select StudentId from Students where Firstname  in order to keep it with the correct student, even
+if that student's student ID changed (Which would occur if you changed their positoning in the Students Table)
+*/
+--------------------------------------------------------------------------------------------------------------------------------
+/*
+
 select *
 from Students
 join GraduationRequirements
 on Students.StudentId=GraduationRequirements.StudentID
----------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------
 The above will display all your data
 */
