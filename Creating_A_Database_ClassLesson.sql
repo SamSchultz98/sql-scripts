@@ -50,7 +50,7 @@ Insert Students
 
 Insert GraduationRequirements
 (StudentId,Topic)   VALUES
-((Select StudentId from Students where Firstname = 'Sam'), 'Git/Github'),            --Uses the select in order to make sure the correct student is selected, even if their id changes 
+((Select StudentId from Students where Firstname = 'Sam'), 'Git/Github'),            --Uses the select in order to make sure the correct student is selected, even if their id changes. See notes below code for more info 
 ((Select StudentId from Students where Firstname = 'Sam'),'SQL'),
 ((Select StudentId from Students where Firstname = 'Sam'),'C#'),
 ((Select StudentId from Students where Firstname = 'Sam'),'Java Script'),
