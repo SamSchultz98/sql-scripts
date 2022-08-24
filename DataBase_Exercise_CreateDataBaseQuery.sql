@@ -4,7 +4,9 @@ use master;
 drop database if exists Exercise;
 
 Create Database Exercise;
-
+/* 
+go                              // Need this the first time ever running this script
+*/
 Use Exercise;
 
 create Table Users (
@@ -36,7 +38,7 @@ Create Table Products(
     PartNbr varchar(30) not null UNIQUE,
     Name varchar(30) not null,
     Price decimal(11,2) not null,
-    Unit varchar(30) not null,
+    Unit varchar(30) not null,                                   --Could defualt this value as "Each"
     Photopath varchar(255) null,
     VendorsId int not null Foreign Key References Vendors(ID)
 );
@@ -46,8 +48,8 @@ Create Table Requests (
     Description varchar(80) not null,
     Justification varchar(80) not null,
     RejectionReason varchar(80) null,
-    DeliveryMode varchar(80) null Default 'Pickup',
-    Status varchar(10) not null Default  'New',
+    DeliveryMode varchar(80) not null Default 'Pickup',
+    Status varchar(10) not null Default  'New',                             --Program Code will alter the status in a real world situation
     Total decimal(11,2) not null default  0,
     UsersId int not null foreign key REFERENCES Users(ID)
 );
