@@ -33,6 +33,3 @@ Declare @rc int;
 Exec @rc =  AddProduct @PartNbr='Fire TV', @Name= 'Fire TV', @Price=75, @VendorCode='amz'
 
 Print 'Return Code Is' + str(@rc)
-
-
---Why is this not working
